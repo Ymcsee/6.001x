@@ -20,7 +20,7 @@ SCRABBLE_LETTER_VALUES = {
 # Helper code
 # (you don't need to understand this helper code)
 
-WORDLIST_FILENAME = "words.txt"
+WORDLIST_FILENAME = "/home/evan/Work/6.001x/pset4/words.txt"
 
 def loadWords():
     """
@@ -75,10 +75,16 @@ def getWordScore(word, n):
     word: string (lowercase letters)
     n: integer (HAND_SIZE; i.e., hand size required for additional points)
     returns: int >= 0
-    """
-    # TO DO ... <-- Remove this comment when you code this function
-
-
+    """,
+    size = 0
+    score = 0
+    for char in word:
+        size += 1
+        score += SCRABBLE_LETTER_VALUES[char]
+    score *= size
+    if (size == n):
+        score += 50
+    return score
 
 #
 # Problem #2: Make sure you understand how this function works and what it does!
@@ -147,9 +153,11 @@ def updateHand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    # TO DO ... <-- Remove this comment when you code this function
-
-
+    handcpy = hand.copy()
+    for char in word:
+        handcpy[char] = handcpy[char] - 1
+    return handcpy
+    
 
 #
 # Problem #3: Test word validity
